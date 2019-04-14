@@ -1,9 +1,71 @@
 main {
     // testing the main element; delete when it has content
     height: 1000px;
-    background-color: white;
+    // background-color: white;
     // testing the main element; delete when it has content
 
+    display: flex;
+    justify-content: space-between;
     width: 80%;
     margin: 2em auto;
 }
+
+
+#feedWrap, #widgetsWrap {
+    height: 100%;
+    margin: 0 1em;
+    // background-color: white;
+}
+
+#feedWrap {
+    width: 70%;
+}
+
+#widgetsWrap {
+    width: 30%;
+}
+
+
+#feedControl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 2em;
+    background-color: white;
+
+    & > div {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    & > div > a {
+        line-height: 50px;
+        margin: 0 1em;
+        height: 100%;
+        font-weight: bold;
+        
+        &[value=active] {
+            color: $accentColor;
+            border-bottom: solid 2px $accentColor;
+        }
+    }
+}
+
+
+#feedControl > a:hover {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        left: -5px;
+        top: -15px;
+        content: 'sort';
+        color: $mutedColor;
+    }
+}
+
+
+
+

@@ -181,9 +181,76 @@ header {
 
 main {
   height: 1000px;
-  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 80%;
   margin: 2em auto;
+}
+
+#feedWrap, #widgetsWrap {
+  height: 100%;
+  margin: 0 1em;
+}
+
+#feedWrap {
+  width: 70%;
+}
+
+#widgetsWrap {
+  width: 30%;
+}
+
+#feedControl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  padding: 0 2em;
+  background-color: white;
+}
+
+#feedControl > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+#feedControl > div > a {
+  line-height: 50px;
+  margin: 0 1em;
+  height: 100%;
+  font-weight: bold;
+}
+
+#feedControl > div > a[value=active] {
+  color: #FF3300;
+  border-bottom: solid 2px #FF3300;
+}
+
+#feedControl > a:hover {
+  position: relative;
+}
+
+#feedControl > a:hover::after {
+  position: absolute;
+  left: -5px;
+  top: -15px;
+  content: 'sort';
+  color: #8e8e8e;
 }
 
 footer {
