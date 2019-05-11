@@ -1,28 +1,18 @@
 main {
-    // testing the main element; delete when it has content
-    height: 1000px;
-    // background-color: white;
-    // testing the main element; delete when it has content
-
     display: flex;
     justify-content: space-between;
     width: 80%;
+    height: 100%;
     margin: 2em auto;
+    flex-grow: 2;
 }
 
 
 #feedWrap, #widgetsWrap {
     height: 100%;
     margin: 0 1em;
-    // background-color: white;
-}
-
-#feedWrap {
-    width: 70%;
-}
-
-#widgetsWrap {
-    width: 30%;
+    width: 50%;
+    background-color: white;
 }
 
 
@@ -39,24 +29,19 @@ main {
         align-items: center;
         height: 100%;
     }
-
-    & > div > a {
-        line-height: 50px;
-        margin: 0 1em;
-        height: 100%;
-        font-weight: bold;
-        
-        &[value=active] {
-            color: $accentColor;
-            border-bottom: solid 2px $accentColor;
-        }
-    }
 }
 
+#feedOptions {
+    @include rectangularBtn;
+    
+}
+#feedOptions .active {
+    border-bottom: 0.3em solid $accentColor;
+    margin-bottom: 0.2em;
+}
 
-#feedControl > a:hover {
+#feedControl > button:hover {
     position: relative;
-
     &::after {
         position: absolute;
         left: -5px;
@@ -64,7 +49,85 @@ main {
         content: 'sort';
         color: $mutedColor;
     }
+};
+
+
+.searchResult {
+    margin: 1em 0;
+    width: 100%;
+    display: block;
+    line-height: 2em;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: greenyellow;
+        & > u {
+            font-size: 1em;
+            color: $accentColor;
+        }
 }
+
+#feedContent {
+    display: flex;
+    flex-direction: column;
+}
+
+#feedContent > article {
+    // width: 100%;
+    margin: 1em 0;
+    padding: 0 3em;
+    // border: 1px solid $mutedColor;
+}
+
+#feedContent > article a {
+    display: block;
+    width: 100%;
+    // background-color: rgba(172, 255, 47, 0.336);
+    color: $accentColor;
+    margin-top: 0.5em;
+    text-align: center;
+}
+
+#feedContent > article > span {
+    display: block;
+    text-align: end;
+    border-bottom: solid 1px $accentColor;
+    margin-bottom: 0.5em;
+    color: $accentColor;
+}
+
+#feedContent > article > div {
+    display: flex;
+    
+    & > div:first-child {
+        display: flex;
+        max-width: 100px;
+        min-width: 100px;
+        max-height: 100px;
+        margin-right: 1em;
+        & > img {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+        }
+    }
+
+    & > div:last-child {
+        display: flex;
+        flex-grow: 2;
+        flex-direction: column;
+        & > p {
+            text-overflow: ellipsis;
+            margin-top: 0.5em;
+        }
+        & > a {
+            align-self: flex-end;
+        }
+    }
+}
+
+
+
+
 
 
 

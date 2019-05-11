@@ -94,7 +94,7 @@ header {
 }
 
 
-.searchForm:focus-within {
+.focusControl:focus-within {
     border: 0.1em solid $accentColor;
     border-radius: 5px;
     margin: 0 0.5em;

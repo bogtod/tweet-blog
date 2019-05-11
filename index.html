@@ -14,12 +14,16 @@
 
 </head>
 <body>
+    <div id="loading">
+        <img src="media/Spinner-1s-200px (1).gif" />
+        <span>Searching news...</span>
+    </div>
     <header>
         <a href="#" id="brand"><span id="brandOne">TOURIST</span><span id="brandTwo">BLOG</span></a>
-        <form class="searchForm">
+        <form class="searchForm focusControl">
             <i class="fas fa-search"></i>
             <input id="searchInput" type="search" />
-            <button type="button" id="formBtn">Search</button>
+            <button type="submit" value="query" id="formBtn">Search</button>
         </form>
         <div class="authButtons">
             <button type="button" href="#">Log In</button>
@@ -31,22 +35,50 @@
     <main>
         <section id="feedWrap">
             <div id="feedControl">
-                <div>
-                    <a href="#" value="active">News Feed</a>
-                    <a href="#">Twitter Feed</a>
+                <div id="feedOptions">
+                    <button type="button" value="top" class="active">Top News</button>
+                    <button type="button" value="sports">Sports</button>
+                    <button type="button" value="technology">Technology</button>
                 </div>
                 <a href="#"><i class="fas fa-sort"></i></a>
             </div>
             <div id="feedContent">
-                <ul>
-
-                </ul>
+                <!-- <article>
+                    <span><i class="fas fa-stopwatch"></i> 3 hours ago</span>
+                    <div>
+                        <div>
+                            <img src='https://9to5mac.com/wp-content/uploads/sites/6/2019/03/iphone-xr.jpg?quality=82&strip=all&w=1600' />
+                        </div>
+                        
+                        <div>
+                            <h2>Hollywood Tackles Blockchain—With Not-Disastrous Results</h2>
+                            
+                            <p>Hollywood’s take on bitcoin wasn’t expected to be nuanced. What’s surprising is that the movie Crypto is not entirely off-target.</p>
+                            <a href='"https://www.wired.com/story/hollywood-does-blockchain-with-not-disastrous-results/'>Read this article on TechCrunch</a>
+                        </div>
+                    </div>
+                </article>
+                <article>
+                        <span><i class="fas fa-stopwatch"></i> 3 hours ago</span>
+                        <div>
+                            <div>
+                                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/AlaskanBear_closeup.jpg/220px-AlaskanBear_closeup.jpg' />
+                            </div>
+                            
+                            <div>
+                                <h2>Hollywood Tackles Blockchain—With Not-Disastrous Results</h2>
+                                
+                                <p>Hollywood’s take on bitcoin wasn’t expected to be nuanced. What’s surprising is that the movie Crypto is not entirely off-target.</p>
+                                <a href='"https://www.wired.com/story/hollywood-does-blockchain-with-not-disastrous-results/'>Read this article on TechCrunch</a>
+                            </div>
+                        </div>
+                    </article> -->
             </div>
         </section>
 
 
         <aside id="widgetsWrap">
-
+            <p>hello</p>
         </aside>
     </main>
 
