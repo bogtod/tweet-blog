@@ -1,33 +1,47 @@
+let feedContent = document.querySelector('#feedContent');
 
-function showLoader(status) {
-    const loading = document.querySelector('#loading');
+//loading gif controller
+function showLoader(status, location) {
     if(status === 'on') {
-        loading.style.display = 'flex';
+        let loading = document.createElement('div');
+        loading.classList.add('loading');
+        loading.innerHTML = `
+            <img src="media/Spinner-1s-200px (1).gif" />
+            <span>Searching news...</span>
+        `;
+        location.appendChild(loading);
     } else if(status === 'off') {
-        loading.style.display = 'none';
+        if(location.querySelector('.loading') !== null) {
+            location.querySelector('.loading').remove();
+        };
     };
 };
 
 
-
+//header search form
 document.querySelector('.searchForm').onsubmit = function(form) {
+    //prevent the form's default behaviour and show the loader
     form.preventDefault();
-    console.log(form)
-    showLoader('on');
+    showLoader('on', feedContent);
+
     let query = document.getElementById('searchInput');
     form.target.classList.remove('focusControl');
     getNews('everything', query.value);
+
     let searchControl = document.createElement('span');
     searchControl.classList.add('searchResult');
     searchControl.disabled = true;
     searchControl.innerHTML = `News related to <u>${query.value}</u>`;
     document.querySelector('#feedControl').insertAdjacentElement('afterEnd', searchControl);
+
     query.value = '';
     form.target.classList.add('focusControl');
     form.target.parentElement.focus();
     removeActive();
 };
 
+
+//function for removing the active class of the feed options (top news, sports, technology)
 function removeActive() {
     let actives = document.querySelectorAll('.active');
     for(let x = 0; x < actives.length; x++) {
@@ -35,10 +49,14 @@ function removeActive() {
     };
 }
 
+
+//getting an array of the feed options and iterating through them for adding click event listeners
 let feedControls = document.querySelectorAll('#feedOptions > button');
 for (let i = 0; i < feedControls.length; i++) {
     feedControls[i].addEventListener('click', function(btn) {
-        showLoader('on');
+        //clicking on a feed option: show loading gif, call the getNews function (pass arguments), remove active class from all of the options
+            //check if the search result span is present from a previous search and remove it, add active class to the clicked feed option
+        showLoader('on', feedContent);
         getNews('top-headlines', '', btn.target.value);
         removeActive();
         if(document.querySelector('.searchResult') !== null) {
@@ -48,6 +66,8 @@ for (let i = 0; i < feedControls.length; i++) {
     });
 }
 
+
+//function for setting the search parameters and making the http request
 function getNews(apiEndpoint, query, category) {
     let apiKey = 'becd678965f34642b4df5dbba8494e67';
     let reqUrl = '';
@@ -63,29 +83,33 @@ function getNews(apiEndpoint, query, category) {
     
     request(reqUrl);
     
+
+    //actual http request function
     function request(url) {
-        document.querySelector('#feedContent').innerHTML = '';
+        //clean the feed content from previous results
+        feedContent.innerHTML = '';
         let req = new XMLHttpRequest();
-        req.addEventListener('error', function(error){console.log(error)});
+        // req.addEventListener('error', function(error){console.log(error)});
         req.open('GET', url);
         req.responseType = 'json';
         req.send();
         req.onload = function() {
+            //call function and pass the request results
             displayArticles(req.response.articles);
-            console.log(`${req.response} ${req.status}`);
-            showLoader('off');
+            //hide the loading gif
+            showLoader('off', feedContent);
         };
     };
 };
 
-// getNews();
 
+//function for displaying the articles
 function displayArticles(articles) {
     for(let i = 0; i < articles.length; i++) {
+        //create article element for each result received and generating the content
         let listItem = document.createElement('article');
-        let d = new Date(articles[i].publishedAt);
         listItem.innerHTML = `
-            <span><i class="fas fa-stopwatch"></i> ${moment(d).fromNow()}</span>
+            <span><i class="fas fa-stopwatch"></i> ${moment(new Date(articles[i].publishedAt)).fromNow()}</span>
             <div>
                 <div>
                     <img src='${articles[i].urlToImage}' />
@@ -99,6 +123,6 @@ function displayArticles(articles) {
                 </div>
             </div>
         `;
-        document.querySelector('#feedContent').appendChild(listItem);
+        feedContent.appendChild(listItem);
     };
 };
