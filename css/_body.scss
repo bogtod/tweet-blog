@@ -11,131 +11,20 @@ main {
 #feedWrap, #widgetsWrap {
     height: 100%;
     margin: 0 1em;
-    width: 50%;
+    // width: 50%;
+    border: 1px solid black;
+}
+
+#feedWrap {
+    flex: 2;
+}
+
+#widgetsWrap {
+    flex: 1;
 }
 
 
-#feedControl {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
-    padding: 0 2em;
-    background-color: white;
-    border-radius: 5px;
 
-    & > div {
-        display: flex;
-        align-items: center;
-        height: 100%;
-    }
-}
-
-#feedOptions {
-    @include rectangularBtn;
-    
-}
-#feedOptions .active {
-    border-bottom: 0.3em solid $accentColor;
-    margin-bottom: 0.2em;
-}
-
-#feedControl > button:hover {
-    position: relative;
-    &::after {
-        position: absolute;
-        left: -5px;
-        top: -15px;
-        content: 'sort';
-        color: $mutedColor;
-    }
-};
-
-
-.searchResult {
-    margin: 1em 0;
-    width: 100%;
-    display: block;
-    line-height: 2em;
-    font-size: 1.5em;
-    text-align: center;
-    color: white;
-    background-color: rgb(55, 165, 255);
-        & > u {
-            font-size: 1em;
-        }
-}
-
-#feedContent {
-    display: flex;
-    flex-direction: column;
-}
-
-#feedContent > article {
-    // width: 100%;
-    margin: 1em 0;
-    padding: 1em;
-    background-color: white;
-    border-radius: 5px;
-    -webkit-box-shadow: 1px 1px 2px 0px rgba(142,142,142,1);
-    -moz-box-shadow: 1px 1px 2px 0px rgba(142,142,142,1);
-    box-shadow: 1px 1px 2px 0px rgba(142,142,142,1);
-}
-
-#feedContent > article a {
-    
-}
-
-#feedContent > article > span {
-    display: block;
-    text-align: end;
-    border-bottom: solid 1px $accentColor;
-    margin-bottom: 0.5em;
-    color: $accentColor;
-}
-
-#feedContent > article > div {
-    display: flex;
-    
-    & > div:first-child {
-        display: flex;
-        max-width: 100px;
-        min-width: 100px;
-        max-height: 100px;
-        margin-right: 1em;
-        & > img {
-            max-width: 100%;
-            max-height: 100%;
-            margin: auto;
-        }
-    }
-
-    & > div:last-child {
-        display: flex;
-        flex-grow: 2;
-        flex-direction: column;
-        & > p {
-            text-overflow: ellipsis;
-            margin-top: 0.5em;
-        }
-        & > a {
-            display: block;
-            width: 100%;
-            padding: 0.25em;
-            color: blue;
-            // background-color: rgba(172, 255, 47, 0.336);
-            margin-top: 0.5em;
-            text-align: center;
-            font-weight: bold;
-            align-self: baseline;
-
-            &:hover {
-                color: $accentColor;
-                background-color: rgba(172, 255, 47, 0.336);
-            }
-        }
-    }
-}
 
 
 

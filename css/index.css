@@ -227,7 +227,19 @@ main {
 #feedWrap, #widgetsWrap {
   height: 100%;
   margin: 0 1em;
-  width: 50%;
+  border: 1px solid black;
+}
+
+#feedWrap {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+#widgetsWrap {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 #feedControl {
@@ -256,44 +268,30 @@ main {
   height: 100%;
 }
 
-#feedOptions button {
+#feedOptions > button {
   position: relative;
   padding: 0.3em;
-  border: 0.1em solid #ffffff;
+  border: 0.3em solid #ffffff;
   background-color: #ffffff;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
-  color: #FF3300;
   text-align: center;
   cursor: pointer;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
-#feedOptions button:hover {
-  background-color: #FF3300;
-  color: #ffffff;
-  border: 0.1em solid #FF3300;
+#feedOptions > button:hover {
+  color: #FF3300;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 #feedOptions .active {
+  color: #FF3300;
   border-bottom: 0.3em solid #FF3300;
   margin-bottom: 0.2em;
-}
-
-#feedControl > button:hover {
-  position: relative;
-}
-
-#feedControl > button:hover::after {
-  position: absolute;
-  left: -5px;
-  top: -15px;
-  content: 'sort';
-  color: #8e8e8e;
 }
 
 .searchResult {
@@ -364,6 +362,7 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-flex: 2;
       -ms-flex-positive: 2;
           flex-grow: 2;
@@ -379,10 +378,11 @@ main {
 }
 
 #feedContent > article > div > div:last-child > a {
-  display: block;
+  bottom: 0;
   width: 100%;
   padding: 0.25em;
   color: blue;
+  background-size: 200px 1px;
   margin-top: 0.5em;
   text-align: center;
   font-weight: bold;
@@ -393,6 +393,29 @@ main {
 #feedContent > article > div > div:last-child > a:hover {
   color: #FF3300;
   background-color: rgba(172, 255, 47, 0.336);
+}
+
+#exchangeOutput > p {
+  margin: 0.5em 0;
+}
+
+#exchangeOutput > p > input {
+  width: 5em;
+}
+
+#dropdownWrap {
+  position: relative;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 1em;
+}
+
+.show {
+  display: block;
 }
 
 footer {

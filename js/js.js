@@ -126,3 +126,112 @@ function displayArticles(articles) {
         feedContent.appendChild(listItem);
     };
 };
+
+
+
+
+
+
+const exchangeWrap = document.querySelector('#exchangeWrap');
+let output = exchangeWrap.querySelector('#exchangeOutput');
+
+exchangeWrap.querySelector('form').onsubmit = function(form) {
+    form.preventDefault();
+    getRates();
+};
+
+
+function getRates(mode) {
+    output.innerHTML = '';
+    showLoader('on', exchangeWrap.querySelector('#exchangeOutput'));
+    let base = document.querySelector('#base');
+    let url = `https://api.exchangeratesapi.io/latest?base=${base.value}&symbols=USD,GBP,RON`;
+    if(mode === 'all') {
+        url = `https://api.exchangeratesapi.io/latest?base=${base.value}`;
+    };
+
+    let exchangeReq = new XMLHttpRequest();
+    exchangeReq.open('GET', url);
+    exchangeReq.responseType = 'json';
+    exchangeReq.send();
+    exchangeReq.onload = function() {
+        console.log(exchangeReq.response);
+        displayExchangeRates(exchangeReq.response, mode);
+    }
+}
+
+
+
+let ratesObj = {};
+function displayExchangeRates(response, mode) {
+    let updated = document.createElement('small');
+    updated.innerText = `Updated: ${response.date}`;
+    output.appendChild(updated);
+    ratesObj = response.rates;
+
+    for(rate in response.rates) {
+        let rateElem = document.createElement('p');
+        rateElem.innerHTML = `
+        <input type='number' value='1' /> ${response.base} = <span>${response.rates[rate].toFixed(2)}</span> <span>${rate}</span>`;
+        output.appendChild(rateElem);
+    };
+    
+    for(let i = 0; i < output.querySelectorAll('p').length; i++) {
+        output.querySelectorAll('p')[i].addEventListener('keyup', function(val) {
+            val.target.parentElement.querySelectorAll('span')[0].innerText = (ratesObj[val.target.parentElement.querySelectorAll('span')[1].innerText] * val.target.value).toFixed(2);
+        });
+    };
+
+    if(mode !== 'all') {
+        let moreBtn = document.createElement('a');
+        moreBtn.innerText = 'Show All Available Rates';
+        moreBtn.addEventListener('click', function() {getRates('all')});
+        output.appendChild(moreBtn);
+    }
+
+    showLoader('off', exchangeWrap.querySelector('#exchangeOutput'));
+}
+
+
+
+
+
+
+
+let dropdown = document.querySelector('.dropdown');
+let dropdownBtn = document.querySelector('.dropdownBtn');
+
+dropdownBtn.addEventListener('click', function() {
+    dropdown.classList.toggle('show');
+    if(dropdown.parentElement.querySelector('.show')) {
+        getSymbols();
+    };
+});
+
+function getSymbols() {
+    let exchangeReq = new XMLHttpRequest();
+    let base = document.querySelector('#base');
+    url = `https://api.exchangeratesapi.io/latest?base=${base.value}`;
+    exchangeReq.open('GET', url);
+    exchangeReq.responseType = 'json';
+    exchangeReq.send();
+    exchangeReq.onload = function() {
+        console.log(exchangeReq);
+        dropdown.querySelector('ul').innerHTML = '';
+        for(rate in exchangeReq.response.rates) {
+            let rateItem = document.createElement('li');
+            rateItem.innerHTML = `<input type="checkbox" value=${rate} /> ${rate}`;
+            dropdown.querySelector('ul').appendChild(rateItem);
+        }
+        for(let i = 0; i < dropdown.querySelectorAll('ul > li > input').length; i++){
+            dropdown.querySelectorAll('ul > li > input')[i].addEventListener('change', function() {
+                if(dropdown.querySelectorAll('ul > li > input:checked').length === 0) {
+                    dropdownBtn.querySelector('span').innerText = ``;
+                    exchangeWrap.querySelector('button').disabled = true;
+                };
+                dropdownBtn.querySelector('span').innerText = `(${dropdown.querySelectorAll('ul > li > input:checked').length})`;
+                exchangeWrap.querySelector('button').disabled = false;
+            });
+        };
+    }; 
+};
