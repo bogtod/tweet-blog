@@ -7,7 +7,6 @@ function showLoader(status, location) {
         loading.classList.add('loading');
         loading.innerHTML = `
             <img src="media/Spinner-1s-200px (1).gif" />
-            <span>Searching news...</span>
         `;
         location.appendChild(loading);
     } else if(status === 'off') {
@@ -47,7 +46,7 @@ function removeActive() {
     for(let x = 0; x < actives.length; x++) {
         actives[x].classList.remove('active');
     };
-}
+};
 
 
 //getting an array of the feed options and iterating through them for adding click event listeners
@@ -64,7 +63,8 @@ for (let i = 0; i < feedControls.length; i++) {
         };
         btn.target.classList.add('active');
     });
-}
+};
+
 
 
 //function for setting the search parameters and making the http request
@@ -88,6 +88,7 @@ function getNews(apiEndpoint, query, category) {
     function request(url) {
         //clean the feed content from previous results
         feedContent.innerHTML = '';
+        showLoader('on', feedContent);
         let req = new XMLHttpRequest();
         // req.addEventListener('error', function(error){console.log(error)});
         req.open('GET', url);
@@ -95,36 +96,35 @@ function getNews(apiEndpoint, query, category) {
         req.send();
         req.onload = function() {
             //call function and pass the request results
-            displayArticles(req.response.articles);
-            //hide the loading gif
-            showLoader('off', feedContent);
+            displayArticles(req.response.articles, showLoader('off', feedContent));
         };
     };
 };
 
 
 //function for displaying the articles
-function displayArticles(articles) {
-    for(let i = 0; i < articles.length; i++) {
+function displayArticles(articles, callback) {
+    articles.map((article) => {
         //create article element for each result received and generating the content
         let listItem = document.createElement('article');
         listItem.innerHTML = `
-            <span><i class="fas fa-stopwatch"></i> ${moment(new Date(articles[i].publishedAt)).fromNow()}</span>
+            <span><i class="fas fa-stopwatch"></i> ${moment(new Date(article.publishedAt)).fromNow()}</span>
             <div>
                 <div>
-                    <img src='${articles[i].urlToImage}' />
+                    <img src='${article.urlToImage}' />
                 </div>
                     
                 <div>
-                    <h2>${articles[i].title}</h2>
+                    <h2>${article.title}</h2>
                     <hr>
-                    <p>${articles[i].description}</p>
-                    <a href=${articles[i].url}>Read it on ${articles[i].source.name}</a>
+                    <p>${article.description}</p>
+                    <a href=${article.url}>Read it on ${article.source.name}</a>
                 </div>
             </div>
         `;
         feedContent.appendChild(listItem);
-    };
+    });
+    callback;
 };
 
 
@@ -163,11 +163,10 @@ function getRates(mode, symbols) {
     exchangeReq.responseType = 'json';
     exchangeReq.send();
     exchangeReq.onload = function() {
-        console.log(exchangeReq.response);
         displayExchangeRates(exchangeReq.response, mode);
         dropdownBtn.querySelector('span').innerText = '';
-    }
-}
+    };
+};
 
 
 
@@ -213,12 +212,13 @@ let dropdownBtn = document.querySelector('.dropdownBtn');
 dropdownBtn.addEventListener('click', function() {
     dropdown.classList.toggle('show');
     if(dropdown.parentElement.querySelector('.show')) {
-        getSymbols();
+        showLoader('on', dropdown);
+        getSymbols(showLoader('off', dropdown));
     };
 });
 
 
-function getSymbols() {
+function getSymbols(callback) {
     let exchangeReq = new XMLHttpRequest();
     let base = document.querySelector('#base');
     url = `https://api.exchangeratesapi.io/latest?base=${base.value}`;
@@ -226,7 +226,6 @@ function getSymbols() {
     exchangeReq.responseType = 'json';
     exchangeReq.send();
     exchangeReq.onload = function() {
-        console.log(exchangeReq);
         dropdown.querySelector('ul').innerHTML = '';
         for(rate in exchangeReq.response.rates) {
             let rateItem = document.createElement('li');
@@ -243,5 +242,6 @@ function getSymbols() {
                 exchangeWrap.querySelector('button').disabled = false;
             });
         };
-    }; 
+    };
+    callback;
 };
