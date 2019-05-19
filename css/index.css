@@ -227,7 +227,6 @@ main {
 #feedWrap, #widgetsWrap {
   height: 100%;
   margin: 0 1em;
-  border: 1px solid black;
 }
 
 #feedWrap {
@@ -395,7 +394,31 @@ main {
   background-color: rgba(172, 255, 47, 0.336);
 }
 
+#exchangeWrap form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1em 0;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#exchangeOutput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 #exchangeOutput > p {
+  display: inline;
   margin: 0.5em 0;
 }
 
@@ -411,7 +434,19 @@ main {
   display: none;
   position: absolute;
   background-color: white;
+  width: 100%;
   padding: 1em;
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.dropdown > * {
+  width: 100%;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0.5em;
 }
 
 .show {

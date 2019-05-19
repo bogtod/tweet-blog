@@ -1,5 +1,21 @@
+#exchangeWrap {
+    
+
+    & form {
+        display: flex;
+        padding: 1em 0;
+        justify-content: space-evenly;
+    }
+}
+
+#exchangeOutput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 #exchangeOutput > p {
+    display: inline;
     margin: 0.5em 0;
 
     & > input {
@@ -18,7 +34,20 @@
     display: none;
     position: absolute;
     background-color: white;
+    width: 100%;
     padding: 1em;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+
+    & > * {
+        width: 100%;
+    }
+
+    & ul {
+        list-style: none;
+        padding: 0.5em;
+    }
 }
 
 .show {

@@ -137,17 +137,25 @@ let output = exchangeWrap.querySelector('#exchangeOutput');
 
 exchangeWrap.querySelector('form').onsubmit = function(form) {
     form.preventDefault();
-    getRates();
+
+    let ratesArr = Array.from(this.querySelectorAll('.dropdown input:checked'));
+    if(ratesArr === 0) {
+        getRates('all');
+    };
+    getRates('', ratesArr);
+    dropdown.classList.toggle('show');
 };
 
 
-function getRates(mode) {
+function getRates(mode, symbols) {
     output.innerHTML = '';
     showLoader('on', exchangeWrap.querySelector('#exchangeOutput'));
     let base = document.querySelector('#base');
-    let url = `https://api.exchangeratesapi.io/latest?base=${base.value}&symbols=USD,GBP,RON`;
+    let url;
     if(mode === 'all') {
         url = `https://api.exchangeratesapi.io/latest?base=${base.value}`;
+    } else {
+        url = `https://api.exchangeratesapi.io/latest?base=${base.value}&symbols=${symbols.map((sym) => { return sym.value }).join(',')}`;
     };
 
     let exchangeReq = new XMLHttpRequest();
@@ -157,6 +165,7 @@ function getRates(mode) {
     exchangeReq.onload = function() {
         console.log(exchangeReq.response);
         displayExchangeRates(exchangeReq.response, mode);
+        dropdownBtn.querySelector('span').innerText = '';
     }
 }
 
@@ -177,7 +186,7 @@ function displayExchangeRates(response, mode) {
     };
     
     for(let i = 0; i < output.querySelectorAll('p').length; i++) {
-        output.querySelectorAll('p')[i].addEventListener('keyup', function(val) {
+        output.querySelectorAll('input')[i].addEventListener('keyup', function(val) {
             val.target.parentElement.querySelectorAll('span')[0].innerText = (ratesObj[val.target.parentElement.querySelectorAll('span')[1].innerText] * val.target.value).toFixed(2);
         });
     };
@@ -185,12 +194,12 @@ function displayExchangeRates(response, mode) {
     if(mode !== 'all') {
         let moreBtn = document.createElement('a');
         moreBtn.innerText = 'Show All Available Rates';
-        moreBtn.addEventListener('click', function() {getRates('all')});
+        moreBtn.addEventListener('click', function() { getRates('all') });
         output.appendChild(moreBtn);
-    }
+    };
 
     showLoader('off', exchangeWrap.querySelector('#exchangeOutput'));
-}
+};
 
 
 
@@ -207,6 +216,7 @@ dropdownBtn.addEventListener('click', function() {
         getSymbols();
     };
 });
+
 
 function getSymbols() {
     let exchangeReq = new XMLHttpRequest();
