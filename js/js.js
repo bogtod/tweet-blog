@@ -108,6 +108,8 @@ function getNews(apiEndpoint, query, category) {
 function displayArticles(articles, callback) {
     articles.map((article) => {
         //create article element for each result received and generating the content
+        let shortDescription = article.title.slice(0, 90);
+
         let listItem = document.createElement('article');
         listItem.innerHTML = `
             <span><i class="fas fa-stopwatch"></i> ${moment(new Date(article.publishedAt)).fromNow()}</span>
@@ -119,7 +121,7 @@ function displayArticles(articles, callback) {
                 <div>
                     <h2>${article.title}</h2>
                     <hr>
-                    <p>${article.description}</p>
+                    <p>${shortDescription}[...]</p>
                     <a href=${article.url}>Read it on ${article.source.name}</a>
                 </div>
             </div>
