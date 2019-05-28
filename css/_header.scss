@@ -6,6 +6,9 @@ header {
     font-family: $primaryFont;
     padding: 0.5em;
     background-color: #ffffff;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
 }
 
 
@@ -61,6 +64,7 @@ header {
 
     &:hover {
         border: 1px solid $accentColor;
+        
     }
 
     & button {
@@ -98,6 +102,9 @@ header {
     border: 0.1em solid $accentColor;
     border-radius: 5px;
     margin: 0 0.5em;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(255,51,0,1);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(255,51,0,1);
+    box-shadow: 1px 1px 1px 0px rgba(255,51,0,1);
 
     & button {
         background-color: $accentColor;
