@@ -1,4 +1,6 @@
 let feedContent = document.querySelector('#feedContent');
+window.onload = getNews('top-headlines', '', 'top');
+
 
 //loading gif controller
 function showLoader(status, location) {
