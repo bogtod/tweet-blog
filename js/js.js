@@ -126,7 +126,11 @@ function displayArticles(articles, callback) {
                 </div>
             </div>
         `;
+        if(article.urlToImage === null) {
+            listItem.querySelector('img').parentElement.style.display = 'none'
+        };
         feedContent.appendChild(listItem);
+
     });
     callback;
 };
