@@ -3,12 +3,13 @@
     justify-content: space-between;
     align-items: center;
     height: 50px;
+    width: 100%;
     padding: 0 2em;
     background-color: white;
     border-radius: 5px;
     -webkit-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
 
     & > div {
         display: flex;
@@ -59,6 +60,7 @@ box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    width: 100%;
 }
 
 #feedContent > article {
@@ -66,6 +68,7 @@ box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
     flex-direction: column;
     align-items: stretch;
     max-width: 40%;
+    min-width: 370px;
     margin: 1em;
     padding: 1em 1em 0 1em;
     background-color: white;

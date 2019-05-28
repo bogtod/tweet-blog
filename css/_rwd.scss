@@ -1,0 +1,44 @@
+@media only screen and (max-width: 1400px) {
+    main {
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    main {
+        flex-direction: column;
+    }
+    #feedWrap {
+        margin-bottom: 2em;
+        min-width: calc(100%-2em);
+    }
+}
+
+@media only screen and (max-width: 840px) {
+    #feedContent > article {
+        width: 80%;
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    #feedContent > article {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 670px) {
+    #brand::after {
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f0d7";
+        margin-left: 1em;
+        color: $accentColor;
+    }
+    header {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .searchForm, .authButtons {
+        display: none;
+    }
+}
