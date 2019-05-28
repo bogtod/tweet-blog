@@ -1,5 +1,18 @@
 let feedContent = document.querySelector('#feedContent');
 window.onload = getNews('top-headlines', '', 'top');
+// window.onresize = () => {
+    if(window.innerWidth < 670) {
+        document.querySelector('.searchForm').classList.add('hide');
+        document.querySelector('.authButtons').classList.add('hide');
+        document.querySelector('#brand').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.searchForm').classList.toggle('hide');
+            document.querySelector('.authButtons').classList.toggle('hide');
+        });
+    } else {
+        document.querySelector('.searchForm').classList.toggle('hide');
+        document.querySelector('.authButtons').classList.toggle('hide');
+    }
 
 
 //loading gif controller

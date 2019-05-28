@@ -29,16 +29,48 @@
 }
 
 @media only screen and (max-width: 670px) {
-    #brand::after {
+    #brand::after, #brand::before {
         font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f0d7";
-        margin-left: 1em;
+        margin: 0 1em;
         color: $accentColor;
     }
     header {
         justify-content: center;
         flex-direction: column;
+        & > * {
+            margin-bottom: 1em;
+        }
     }
-    .searchForm, .authButtons {
+    .hide {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    #feedWrap {
+        margin: auto;
+    }
+    #feedControl {
+        border-radius: 0;
+    }
+
+    #feedWrap article {
+        margin: 1em auto;
+        border-radius: 0;
+    }
+
+    #feedWrap article > div {
+        flex-direction: column;
+
+        & > div:first-child {
+            display: block;
+            margin: 0;
+            max-width: none;
+            max-height: none;
+
+            & > img {
+                max-height: none;
+            }
+        }
     }
 }

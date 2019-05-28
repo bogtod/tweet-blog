@@ -543,11 +543,11 @@ footer > div:nth-child(2) > a:first-child {
 }
 
 @media only screen and (max-width: 670px) {
-  #brand::after {
+  #brand::after, #brand::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f0d7";
-    margin-left: 1em;
+    margin: 0 1em;
     color: #FF3300;
   }
   header {
@@ -559,8 +559,39 @@ footer > div:nth-child(2) > a:first-child {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .searchForm, .authButtons {
+  header > * {
+    margin-bottom: 1em;
+  }
+  .hide {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  #feedWrap {
+    margin: auto;
+  }
+  #feedControl {
+    border-radius: 0;
+  }
+  #feedWrap article {
+    margin: 1em auto;
+    border-radius: 0;
+  }
+  #feedWrap article > div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #feedWrap article > div > div:first-child {
+    display: block;
+    margin: 0;
+    max-width: none;
+    max-height: none;
+  }
+  #feedWrap article > div > div:first-child > img {
+    max-height: none;
   }
 }
 /*# sourceMappingURL=index.css.map */
