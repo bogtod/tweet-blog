@@ -54,13 +54,15 @@
 
 #feedContent {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #feedContent > article {
-    // width: 100%;
-    margin: 1em 0;
-    padding: 1em;
+    // min-width: 300px;
+    max-width: 40%;
+    margin: 1em;
+    padding: 1em 1em 0 1em;
     background-color: white;
     border-radius: 5px;
     -webkit-box-shadow: 1px 1px 2px 0px rgba(142,142,142,1);
