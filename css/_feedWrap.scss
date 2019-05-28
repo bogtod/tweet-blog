@@ -59,7 +59,9 @@
 }
 
 #feedContent > article {
-    // min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     max-width: 40%;
     margin: 1em;
     padding: 1em 1em 0 1em;
@@ -80,6 +82,7 @@
 }
 
 #feedContent > article > div {
+    flex: 2;
     display: flex;
     
     & > div:first-child {
@@ -97,12 +100,14 @@
 
     & > div:last-child {
         display: flex;
+        align-items: stretch;
         position: relative;
         flex-grow: 2;
         flex-direction: column;
         & > p {
             text-overflow: ellipsis;
             margin-top: 0.5em;
+            flex: 2;
         }
         & > a {
             // display: block;
@@ -116,7 +121,7 @@
             margin-top: 0.5em;
             text-align: center;
             font-weight: bold;
-            align-self: baseline;
+            align-self: flex-end;
 
             &:hover {
                 color: $accentColor;

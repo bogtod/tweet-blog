@@ -320,6 +320,16 @@ main {
 }
 
 #feedContent > article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   max-width: 40%;
   margin: 1em;
   padding: 1em 1em 0 1em;
@@ -338,6 +348,9 @@ main {
 }
 
 #feedContent > article > div {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -363,6 +376,9 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   position: relative;
   -webkit-box-flex: 2;
       -ms-flex-positive: 2;
@@ -376,6 +392,9 @@ main {
 #feedContent > article > div > div:last-child > p {
   text-overflow: ellipsis;
   margin-top: 0.5em;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 #feedContent > article > div > div:last-child > a {
@@ -387,8 +406,8 @@ main {
   margin-top: 0.5em;
   text-align: center;
   font-weight: bold;
-  -ms-flex-item-align: baseline;
-      align-self: baseline;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 #feedContent > article > div > div:last-child > a:hover {
